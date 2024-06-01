@@ -1,0 +1,140 @@
+<div class="order-book">
+<br><br>
+  <div class="container">
+
+    <div class="header">
+      <div class="css-1f9txub">Order Book</div>
+      <div class="css-10yqv30"></div>
+      <div class="css-1a3mfis">BTC<!-- -->/<!-- -->USDT</div>
+      <div class="css-1h690ep"></div>
+
+      <div class="css-vurnku">
+        <div class="css-80wcr9">
+          <div class="css-12ye5fk">Depth</div>
+        </div>
+
+        <div class="css-plowp4">
+          <i class='bx bxs-down-arrow css-17rfy1m' ></i>
+          <input type="input" class="css-1bzb8nq" value="15">
+
+          <div class="css-tfbiy9">15</div>
+
+          <ul role="listbox" class="css-1fis29c">
+            <li role="option" class="bnb-active-option css-1hg0fbj">
+              15<div class="css-4ouxhb"></div>
+            </li>
+            <li role="option" class=" css-8vuqu5">
+              30<div class="css-4ouxhb"></div>
+            </li>
+            <li role="option" class=" css-8vuqu5">
+              50<div class="css-4ouxhb"></div>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+
+      <div class="css-vurnku">
+        <div class="css-80wcr9">
+          <div class="css-12ye5fk">Group</div>
+        </div>
+
+        <div class="css-plowp4">
+          <i class='bx bxs-down-arrow css-17rfy1m' ></i>
+          <input type="input" class="css-1bzb8nq" value="15">
+
+          <div class="css-tfbiy9">2 decimals</div>
+
+          <ul role="listbox" class="css-1fis29c">
+            <li role="option" class="bnb-active-option css-1hg0fbj">
+              15<div class="css-4ouxhb"></div>
+            </li>
+            <li role="option" class=" css-8vuqu5">
+              30<div class="css-4ouxhb"></div>
+            </li>
+            <li role="option" class=" css-8vuqu5">
+              50<div class="css-4ouxhb"></div>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="double-table">
+
+      <div class="left-table">
+        <div class="css-1r6f7es">Buy Order</div>
+
+        <div class="css-23notw">
+          <div class="css-1kz7vkb">
+            <div class="css-n84qs8">Side</div>
+            <div class="css-1vsjtk2">Price<!-- --> (<!-- -->USDT<!-- -->)</div>
+            <div class="css-1fff7bs">Amount<!-- --> (<!-- -->BTC<!-- -->)</div>
+            <div class="css-1fff7bs">Total<!-- --> (<!-- -->USDT<!-- -->)</div>
+            <div class="css-1wjb4nc">Sum<!-- --> (<!-- -->USDT<!-- -->)</div>
+          </div>
+        </div>
+
+        <div class="container-oderbook">
+          <div>
+            <div class="grid-order">
+              <div class="grid-scroll-order">
+                <div class="css-16o863w" *ngFor="let bid of bids; let i = index;">
+                  <div class="css-m136x5">
+                    <div class="css-34uhtw">Buy {{i + 1}}</div>
+                    <div class="css-17n8nv4">{{bid[0]}}</div>
+                    <div class="css-1uw9wny">{{bid[1]}}</div>
+                    <div class="css-1uw9wny">{{bid[2]}}</div>
+                    <div class="css-1pbrmid">{{bid[2]}}</div>
+                  </div>
+                  <div class="css-1fu3p27" [ngStyle]="{'width': bid[3]}"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="right-table">
+        <div class="css-1r6f7es">Sell Order</div>
+
+        <div class="css-23notw">
+          <div class="css-1kz7vkb">
+            <div class="css-n84qs8">Side</div>
+            <div class="css-1vsjtk2">Price<!-- --> (<!-- -->USDT<!-- -->)</div>
+            <div class="css-1fff7bs">Amount<!-- --> (<!-- -->BTC<!-- -->)</div>
+            <div class="css-1fff7bs">Total<!-- --> (<!-- -->USDT<!-- -->)</div>
+            <div class="css-1wjb4nc">Sum<!-- --> (<!-- -->USDT<!-- -->)</div>
+          </div>
+        </div>
+
+        <div class="container-oderbook">
+          <div>
+            <div class="grid-order">
+              <div class="grid-scroll-order">
+
+                <div class="css-16o863w bg-sell-row" *ngFor="let ask of asks; let i = index;">
+                  <div class="css-m136x5">
+                    <div class="css-34uhtw text-sell-index">Sell {{ i + 1}}</div>
+                    <div class="css-17n8nv4">{{ask?.[0]}}</div>
+                    <div class="css-1uw9wny">{{ask?.[1]}}</div>
+                    <div class="css-1uw9wny">{{ask?.[2]}}</div>
+                    <div class="css-1pbrmid">{{ask?.[2]}}</div>
+                  </div>
+                  <div class="css-1fu3p27 red-bg" [ngStyle]="{'width': ask[3]}"></div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

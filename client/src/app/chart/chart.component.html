@@ -1,0 +1,412 @@
+<header>
+  <div class="ct-2">
+    <div class="box-1">
+      <div class="left">
+        <div class="container-left">
+
+          <div class="opne-1">
+            <div class="child-1">
+              <div class="x-t1">
+                <h1 class="h1-btc">BTC/USDT</h1>
+              </div>
+              <div class="x-t2">
+                <a class="bt-pr-a" href="">Bitcoin Price</a>
+              </div>
+            </div>
+            <div class="child-2">
+              <span class="c-op-cl2">
+                <div class="bexs-op">
+                  <div class="tagg">
+                    POW
+                  </div>
+                  <div class="yan-yan">
+                    ᱾
+                  </div>
+                  <div class="yo-yo">
+                    Vol
+                  </div>
+                  <i class='bx bx-chevron-right xi-xi'></i>
+                </div>
+              </span>
+            </div>
+          </div>
+
+          <div class="opne-2">
+            <div class="benzen-pr" [ngStyle]="{'color': color}">{{lastprice}}</div>
+            <div class="sub-pri">${{lastprice}}</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="rick-op">
+          <div class="tik-child">
+
+            <div class="tik-a">
+              <div class="hed-tik">
+                24h Change
+              </div>
+              <div class="bot-tik">
+                <span class="sanf-bpx" [ngStyle]="{'color': color24}">
+                  <div class="sanf-1">
+                    {{change24h}}
+                  </div>
+                  &nbsp;
+                  <div class="sanf-2">
+                    {{change24hphantram}}%
+                  </div>
+                </span>
+              </div>
+            </div>
+
+            <div class="tik-a">
+              <div class="hed-tik">
+                24h High
+              </div>
+              <div class="bot-tik">
+                <span class="sanf-bpx">
+                  <div class="sanf-1 white-sanf">
+                    {{high24h}}
+                  </div>
+                </span>
+              </div>
+            </div>
+
+            <div class="tik-a">
+              <div class="hed-tik">
+                24h Low
+              </div>
+              <div class="bot-tik">
+                <span class="sanf-bpx">
+                  <div class="sanf-1 white-sanf">
+                    {{low24h}}
+                  </div>
+                </span>
+              </div>
+            </div>
+
+            <div class="tik-a">
+              <div class="hed-tik">
+                24h Volume(BTC)
+              </div>
+              <div class="bot-tik">
+                <span class="sanf-bpx">
+                  <div class="sanf-1 white-sanf">
+                    {{volume24hBTC}}
+                  </div>
+                </span>
+              </div>
+            </div>
+
+            <div class="tik-a">
+              <div class="hed-tik">
+                24h Volume(USDT)
+              </div>
+              <div class="bot-tik">
+                <span class="sanf-bpx">
+                  <div class="sanf-1 white-sanf">
+                    {{volume24hUSDT}}
+                  </div>
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box-2">
+      <div class="hutech-op">
+        <i class='bx bx-play-circle yan-play'></i>
+        <span class="yun-shi">Spot Tutorial</span>
+      </div>
+      <div class="fpt-io">
+        <i class='bx bx-speaker'></i>
+        <span class="yun-shi">Spot Guidance</span>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<main>
+  <div class="order-book-left">
+
+    <div class="contai-obl">
+      <div class="header-obl">
+        <div class="button-3-obl">
+            <button class="btn-obl">
+              <div class="red-green-op-op">
+                <div class="left-red-op-op">
+                  <div class="top-red-op mg-mg"></div>
+                  <div class="bot-red-op mg-mg"></div>
+                </div>
+                <div class="white-box-op-op">
+                  <div class="white-box-th mg-mg"></div>
+                  <div class="white-box-th mg-mg"></div>
+                  <div class="white-box-th mg-mg"></div>
+                </div>
+              </div>
+            </button>
+
+            <button class="btn-obl">
+              <div class="red-green-op-op">
+                <div class="left-red-op-op">
+                  <div class="top-red-op mg-mg pha-ken"></div>
+                </div>
+                <div class="white-box-op-op">
+                  <div class="white-box-th mg-mg white-an"></div>
+                  <div class="white-box-th mg-mg white-an"></div>
+                  <div class="white-box-th mg-mg white-an"></div>
+                </div>
+              </div>
+            </button>
+
+            <button class="btn-obl">
+              <div class="red-green-op-op">
+                <div class="left-red-op-op">
+                  <div class="top-red-op mg-mg pha-ken2"></div>
+                </div>
+                <div class="white-box-op-op">
+                  <div class="white-box-th mg-mg white-an"></div>
+                  <div class="white-box-th mg-mg white-an"></div>
+                  <div class="white-box-th mg-mg white-an"></div>
+                </div>
+              </div>
+            </button>
+
+        </div>
+
+        <div class="number-index-down">
+          <div class="css-jjj">
+            <div class="ko-ko">
+              <span class="uuh-op">0.01</span>
+              <i class='bx bxs-down-arrow donw-obl' ></i>
+            </div>
+          </div>
+
+          <div class="css-kkk">
+            <div class="obl-control">
+              <i class='bx bx-slider bes-op-fl'></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="orderbook-tbheader">
+        <div class="content-obl-thd">
+          <div class="item" style="text-align: left;">
+            Price(USDT)
+          </div>
+
+          <div class="item text-x-kl">
+            Amount(BTC)
+          </div>
+
+          <div class="item">
+            Total
+          </div>
+        </div>
+      </div>
+
+<!-- -------------------BIDS OR ASKS----------------- -->
+      <div class="obl-list-price">
+        <div class="benxen-ma-row-ont" style="height: max-content;">
+
+          <div class="dis-om-hu position-relative" *ngFor="let ask of asks">
+              <div class="f-l-kj red-text">
+                {{ask?.[0]}}
+              </div>
+              <div class="f-l-kj xkh-xkh" style="text-align: right; margin-left: 4px;">
+                {{ask?.[1]}}
+              </div>
+              <div class="f-l-kj xkh-xkh" style="text-align: right; margin-left: 4px;">
+                {{ask?.[2]}}
+              </div>
+              <div class="chenchen-bg-red" [ngStyle]="{'width': ask[3]}"></div>
+          </div>
+
+        </div>
+      </div>
+<!-- -------------------BIDS OR ASKS----------------- -->
+      <div class="obl-price-hd">
+        <div class="cob-price-ki" [ngStyle]="{'color': color}">
+          {{lastprice}} <i [ngClass]="icon"></i>
+        </div>
+        <div class="mini-price">
+          ${{lastprice}}
+        </div>
+        <div>
+          <a class="more-more" href="">More</a>
+        </div>
+      </div>
+
+<!-- -------------------BIDS OR ASKS----------------- -->
+      <div class="obl-list-price">
+        <div class="benxen-ma-row-ont" >
+
+          <div class="dis-om-hu position-relative" *ngFor="let bid of bids;">
+            <div class="f-l-kj red-text green-text">
+              {{bid?.[0]}}
+            </div>
+            <div class="f-l-kj xkh-xkh" style="text-align: right; margin-left: 4px;">
+              {{bid?.[1]}}
+            </div>
+            <div class="f-l-kj xkh-xkh" style="text-align: right; margin-left: 4px;">
+              {{bid?.[2]}}
+            </div>
+            <div class="chenchen-bg" [ngStyle]="{'width': bid[3]}"></div>
+          </div>
+
+        </div>
+      </div>
+<!-- -------------------BIDS OR ASKS----------------- -->
+
+      <div class="compare" style="margin-top: 10px;">
+
+        <div class="orderbook-compare">
+          <div class="compare-bids" [ngStyle]="{'width': tylemua}">
+            <div class="compare-direction">B</div>
+            &nbsp;
+            <div class="compare-percent">{{tylemua}}</div>
+          </div>
+
+          <div class="compare-asks" [ngStyle]="{'width': tyleban}">
+            <div class="compare-percent">{{tyleban}}</div>
+            &nbsp;
+            <div class="compare-direction">S</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="chart-right">
+
+    <div class="hd-chart-chart">
+      <div class="bpx-hd-chart-chart">
+        <div class="css-bmgjx4">Chart</div>
+        <div class="css-1ue7a6n">Info</div>
+        <div class="css-1ue7a6n">Trading Data</div>
+        <div class="css-1ue7a6n">Square</div>
+      </div>
+
+      <div class="rih-bpx-hd-chart">
+        <i class='bx bx-expand law-law'></i>
+        <i class='bx bx-grid-alt lew-lew'></i>
+      </div>
+    </div>
+
+    <div class="frame-time-hd-chart">
+      <div class="are-oli-btn">
+
+        <div class="time-h-d-ye">
+          <div class="panie-time">
+            <div class="pain-unt">
+              <div class="css-e2pgpg">
+                <div id="Time" class="css-1pj8e72">Time</div>
+                <div id="1s" class="css-1pj8e72">1s</div>
+                <div id="15m" class="css-1pj8e72">15m</div>
+                <div id="1h" class="css-1pj8e72">1H</div>
+                <div id="4h" class="css-1pj8e72">4H</div>
+                <div id="1d" class="css-ktyfxp">1D</div>
+                <div id="1w" class="css-1pj8e72">1W</div>
+              </div>
+              <div class="cungbox-down">
+                <i class='bx bxs-down-arrow down-ku' ></i>
+              </div>
+            </div>
+          </div>
+          <div class="chart-go-go">
+            <i class='bx bx-line-chart icon-chart-gogo'></i>
+          </div>
+          <div class="setting-bpx">
+            <i class='bx bxs-cog icon-sett' ></i>
+          </div>
+        </div>
+
+        <div class="div-center"></div>
+
+        <div class="div-right-after">
+          <div class="bung-div-rr">
+            <div class="lki-jyg">
+              <div class="css-lzd0h4">
+                Original
+              </div>
+              <div class="css-parxu0">
+                Trading View
+              </div>
+              <div class="css-parxu0">
+                Depth
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="nen-nhat">
+      <div #chart style="width: 100%; height: 580px; position: relative;">
+        <div class="pen-op" style="position: absolute; color: white; top: 0; z-index: 2;">
+
+          <div class="chart-title-row" isfold="false">
+            <div class="icon-box">
+              <i class='bx bxs-down-arrow down-ptkt'></i>
+            </div>
+            <div class="chart-title-indicator-container">
+              <span class="default-label-box" key="t" style="padding-right: 5px;">{{today}}</span>
+              <span class="default-label-box" key="O" style="padding-right: 5px;">Open:</span>
+              <span class="default-label-box" key="o" style="padding-right: 5px;" [ngStyle]="{'color': colorTraview}">{{Priceopen}}</span>
+              <span class="default-label-box" key="H" style="padding-right: 5px;">High:</span>
+              <span class="default-label-box" key="h" style="padding-right: 5px;" [ngStyle]="{'color': colorTraview}">{{Pricehigh}}</span>
+              <span class="default-label-box" key="L" style="padding-right: 5px;">Low:</span>
+              <span class="default-label-box" key="l" style="padding-right: 5px;" [ngStyle]="{'color': colorTraview}">{{Pricelow}}</span>
+              <span class="default-label-box" key="C" style="padding-right: 5px;">Close:</span>
+              <span class="default-label-box" key="c" style="padding-right: 5px;" [ngStyle]="{'color': colorTraview}">{{Priceclose}}</span>
+              <span class="default-label-box title_change_label" key="CHANGE" style="padding-right: 5px;">CHANGE:</span>
+              <span class="default-label-box title_change_value" key="change" style="padding-right: 5px;" [ngStyle]="{'color': colorTraview}">{{change}}%</span>
+              <span class="default-label-box title_amplitude_label" key="AMP" style="padding-right: 5px;">AMPLITUDE:</span>
+              <span class="default-label-box title_amplitude_value" key="amp" style="padding-right: 5px;" [ngStyle]="{'color': colorTraview}">{{amplitude}}%</span>
+            </div>
+          </div>
+
+          <div class="chart-title-row" isfold="false">
+            <div class="icon-box">
+              <i class='bx bxs-down-arrow down-ptkt'></i>
+            </div>
+            <div class="chart-title-indicator-container" key="@MA">
+              <span class="default-label-box" key="MA[0]" style="padding-right: 5px; display: block;">MA(7):</span>
+              <span class="default-label-box" key="MA[0]Series" style="padding-right: 5px; color: rgba(241, 156, 56, 0.7); display: block;">62228.04</span>
+              <span class="default-label-box" key="MA[1]" style="padding-right: 5px; display: block;">MA(25):</span>
+              <span class="default-label-box" key="MA[1]Series" style="padding-right: 5px; color: rgba(234, 61, 247, 0.7); display: block;">63006.12</span>
+              <span class="default-label-box" key="MA[2]" style="padding-right: 5px; display: block;">MA(99):</span>
+              <span class="default-label-box" key="MA[2]Series" style="padding-right: 5px; color: rgba(116, 252, 253, 0.7); display: block;">61752.28</span>
+              <span class="default-label-box" key="MA[3]" style="padding-right: 5px; display: none;">MA(0):</span>
+              <span class="default-label-box" key="MA[3]Series" style="padding-right: 5px; color: rgba(139, 43, 246, 0.7); display: none;">NaN</span>
+              <span class="default-label-box" key="MA[4]" style="padding-right: 5px; display: none;">MA(0):</span>
+              <span class="default-label-box" key="MA[4]Series" style="padding-right: 5px; color: rgba(0, 32, 245, 0.7); display: none;">NaN</span>
+              <span class="default-label-box" key="MA[5]" style="padding-right: 5px; display: none;">MA(0):</span>
+              <span class="default-label-box" key="MA[5]Series" style="padding-right: 5px; color: rgba(234, 51, 35, 0.7); display: none;">NaN</span>
+              <span class="default-label-box" key="MA[6]" style="padding-right: 5px; display: none;">MA(0):</span>
+              <span class="default-label-box" key="MA[6]Series" style="padding-right: 5px; color: rgba(87, 134, 224, 0.7); display: none;">NaN</span>
+              <span class="default-label-box" key="MA[7]" style="padding-right: 5px; display: none;">MA(0):</span>
+              <span class="default-label-box" key="MA[7]Series" style="padding-right: 5px; color: rgba(255, 254, 85, 0.7); display: none;">NaN</span>
+              <span class="default-label-box" key="MA[8]" style="padding-right: 5px; display: none;">MA(0):</span>
+              <span class="default-label-box" key="MA[8]Series" style="padding-right: 5px; color: rgba(117, 250, 76, 0.7); display: none;">NaN</span>
+              <span class="default-label-box" key="MA[9]" style="padding-right: 5px; display: none;">MA(0):</span>
+              <span class="default-label-box" key="MA[9]Series" style="padding-right: 5px; color: rgba(138, 26, 16, 0.7); display: none;">NaN</span>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+      <div #volume style="width: 100%; height: 200px;"></div>
+    </div>
+  </div>
+</main>

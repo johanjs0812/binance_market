@@ -1,0 +1,454 @@
+<div class="market-overview">
+
+  <div class="header">
+    <div class="css-11jjudl">
+      <div class="css-b1a7bu">
+        <a class="css-z1usmb">Markets Overview</a>
+        <a class="css-1bw95s2">Trading Data</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="xop-14">
+
+      <div class="three-table gap-m grid-4">
+
+        <div class="table-coins">
+
+          <div class="header-tb-coins">
+            <div class="caption1 text-t-primary">Hot Coins</div>
+            <div class="text-t-primary More-box caption1">More
+              <i class='bx bx-chevron-right'></i>
+            </div>
+          </div>
+
+          <div class="body-tn-coins">
+
+            <div class="css-4cffwv" *ngFor="let coin of HotCoins;">
+              <a class="gap-2xs css-fhz2qa">
+                <img src="{{coin.img}}" style="border-radius: 50%;">
+                <div class="line-clamp-1 truncate css-10dum4v">{{toUpperCase(coin.symbol)}}</div>
+              </a>
+              <div class="css-13k09h2">
+                <div class="css-16hlase" style="direction: ltr;">${{coin.price}}</div>
+              </div>
+              <div class="css-1rgq15x" [ngStyle]="{'color': getCoinColor(coin.change)}">{{formatChange(coin.change)}}%</div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="table-coins">
+
+          <div class="header-tb-coins">
+            <div class="caption1 text-t-primary">New Listing</div>
+            <div class="text-t-primary More-box caption1">More
+              <i class='bx bx-chevron-right'></i>
+            </div>
+          </div>
+
+          <div class="body-tn-coins">
+
+            <div class="css-4cffwv" *ngFor="let coin of NewListingCoins;">
+              <a class="gap-2xs css-fhz2qa">
+                <img src="{{coin.img}}" style="border-radius: 50%;">
+                <div class="line-clamp-1 truncate css-10dum4v">{{toUpperCase(coin.symbol)}}</div>
+              </a>
+              <div class="css-13k09h2">
+                <div class="css-16hlase" style="direction: ltr;">${{coin.price}}</div>
+              </div>
+              <div class="css-1rgq15x" [ngStyle]="{'color': getCoinColor(coin.change)}">{{formatChange(coin.change)}}%</div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="table-coins">
+
+          <div class="header-tb-coins">
+            <div class="caption1 text-t-primary">Top Gainer Coin</div>
+            <div class="text-t-primary More-box caption1">More
+              <i class='bx bx-chevron-right'></i>
+            </div>
+          </div>
+
+          <div class="body-tn-coins">
+
+            <div class="css-4cffwv" *ngFor="let coin of TopGainerCoin;">
+              <a class="gap-2xs css-fhz2qa">
+                <img src="{{coin.logo}}" style="border-radius: 50%;">
+                <div class="line-clamp-1 truncate css-10dum4v">{{coin.symbol}}</div>
+              </a>
+              <div class="css-13k09h2">
+                <div class="css-16hlase" style="direction: ltr;">$</div>
+              </div>
+              <!-- <div class="css-1rgq15x" [ngStyle]="{'color': getCoinColor(coin.change)}">{{formatChange(coin.change)}}%</div> -->
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="table-coins">
+
+          <div class="header-tb-coins">
+            <div class="caption1 text-t-primary">Top Volume Coin</div>
+            <div class="text-t-primary More-box caption1">More
+              <i class='bx bx-chevron-right'></i>
+            </div>
+          </div>
+
+          <div class="body-tn-coins">
+
+            <div class="css-4cffwv" *ngFor="let coin of TopVolume;">
+              <a class="gap-2xs css-fhz2qa">
+                <img src="{{coin.logo}}" style="border-radius: 50%;">
+                <div class="line-clamp-1 truncate css-10dum4v">{{coin.symbol}}</div>
+              </a>
+              <div class="css-13k09h2">
+                <div class="css-16hlase" style="direction: ltr;">$</div>
+              </div>
+              <!-- <div class="css-1rgq15x" [ngStyle]="{'color': getCoinColor()}">{{formatChange()}}%</div> -->
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <br>
+
+    <div class="css-1czy19c">
+      <div class="box-row">
+        <div class="contai-nav">
+          <div class="css-75beku">
+            <div class="central-nav">
+
+              <div class="left-nav">
+                <div class="flex-nav">
+
+                  <div class="nav-item">
+                    <div id="market_sector_Favorite" class="css-19kh8e3" style="direction: ltr;">
+                      <div class="css-81xrsn">
+                        <div class="subtitle2-1">Favorites</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="nav-item text-t-primary ">
+                    <div id="market_sector_Favorite" class="css-19kh8e3" style="direction: ltr;">
+                      <div class="css-81xrsn">
+                        <div class="subtitle2-1">All Cryptos</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="nav-item">
+                    <div id="market_sector_Favorite" class="css-19kh8e3" style="direction: ltr;">
+                      <div class="css-81xrsn">
+                        <div class="subtitle2-1">Spot Markets</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="nav-item">
+                    <div id="market_sector_Favorite" class="css-19kh8e3" style="direction: ltr;">
+                      <div class="css-81xrsn">
+                        <div class="subtitle2-1">Futures Markets</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="nav-item">
+                    <div id="market_sector_Favorite" class="css-19kh8e3" style="direction: ltr;">
+                      <div class="css-81xrsn">
+                        <div class="subtitle2-1">New Listing</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="right-nav">
+                <div class="bn-textField-prefix">
+                  <i class='bx bx-search'></i>
+                </div>
+                <input id="markets_main_search" class="bn-textField-input" placeholder="Search Coin Name" value="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="nav-2-contai">
+      <div class="box-row">
+
+        <div class="central-nav2">
+
+          <div class="bn-tab bn-tab__primary-gray data-size-small active bn-undefined">
+            <div class="flex items-center css-10nf7hq">
+              <div class="css-10nf7hq " style="padding: 0;">
+                <div class="subtitle4 flex items-center gap-5xs">All</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bn-tab bn-tab__primary-gray data-size-small bn-undefined">
+            <div class="flex items-center css-10nf7hq">
+              <div class="css-10nf7hq " style="padding: 0;">
+                <div class="subtitle4 flex items-center gap-5xs">Meme</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bn-tab bn-tab__primary-gray data-size-small bn-undefined">
+            <div class="flex items-center css-10nf7hq">
+              <div class="css-10nf7hq " style="padding: 0;">
+                <div class="subtitle4 flex items-center gap-5xs">Payments</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bn-tab bn-tab__primary-gray data-size-small bn-undefined">
+            <div class="flex items-center css-10nf7hq">
+              <div class="css-10nf7hq " style="padding: 0;">
+                <div class="subtitle4 flex items-center gap-5xs">AI</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bn-tab bn-tab__primary-gray data-size-small bn-undefined">
+            <div class="flex items-center css-10nf7hq">
+              <div class="css-10nf7hq " style="padding: 0;">
+                <div class="subtitle4 flex items-center gap-5xs">Layer 1 / Layer 2</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bn-tab bn-tab__primary-gray data-size-small bn-undefined">
+            <div class="flex items-center css-10nf7hq">
+              <div class="css-10nf7hq " style="padding: 0;">
+                <div class="subtitle4 flex items-center gap-5xs">Metaverse</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bn-tab bn-tab__primary-gray data-size-small bn-undefined">
+            <div class="flex items-center css-10nf7hq">
+              <div class="css-10nf7hq " style="padding: 0;">
+                <div class="subtitle4 flex items-center gap-5xs">Others <i class='bx bx-caret-down' ></i></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <br>
+
+        <div class="central-des">
+          <div class="css-15oc6s9">
+            <div class="subtitle1 mobile:subtitle4 font-semibold css-1iqe90x">Top Tokens by Market Capitalization</div>
+            <div class="body3 mobile:caption2 flex flex-col gap-2xs text-t-third">
+              <p class="line-clamp-1">Get a comprehensive snapshot of all cryptocurrencies available on Binance. This page displays the latest prices, 24-hour trading volume, price changes, and market capitalizations for all cryptocurrencies on Binance. Users can quickly access key information about these digital assets and access the trade page from here.</p>
+              <p class="hidden">The data presented is for informational purposes only. Some data is provided by CoinMarketCap and is shown on an “as is” basis, without representation or warranty of any kind. Please view our General Risk Warning for more information.</p>
+            </div>
+            <div class="caption1 flex cursor-pointer items-center text-t-primary">Show More <i class='bx bx-chevron-down'></i></div>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="central-list">
+          <div class="defin-width" style="min-width: 100%;">
+            <div class="header-list-coins">
+
+              <div class="css-vurnku">
+
+                <div class="tab__column css-1n3ahhb" style="display: flex; justify-content: space-between; width: 340px;">
+                  <div class="css-4cffwv">
+                    <div class="text-t-third css-lkqrqt">
+                      <div class="whitespace-nowrap text-t-third">Name</div>
+                      &nbsp;
+                      <i class='bx bxs-sort-alt' ></i>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="css-yexlrp" style="width: 148px;">
+                <div class="css-4cffwv">
+                  <div class="text-t-third css-lkqrqt">
+                    <div class="whitespace-nowrap text-t-third">Price</div>
+                    &nbsp;
+                    <i class='bx bxs-sort-alt' ></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="css-yexlrp" style="width: 148px;">
+                <div class="css-4cffwv">
+
+                  <div class="css-11od2hf">
+                    <div class=" css-u7u3ff">
+                      <input class="bn-sdd-input css-1es5582" value="24h">
+                      <div class="bn-input-suffix css-vurnku">
+                        <div class="css-13c2b5p">
+                          <i class='bx bx-caret-down' ></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- <div class="bn-sdd-dropdown closing css-1tsr9u1">
+                      <ul class="bn-sdd-list css-2rl2kr">
+                        <li id="1h" title="1h" class="bn-sdd-option-item css-hyxts7">
+                          <div class="bn-sdd-option css-4cffwv">
+                            <div class="css-1pysja1">1h</div>
+                          </div>
+                        </li>
+                        <li id="4h" title="4h" class="bn-sdd-option-item css-hyxts7">
+                          <div class="bn-sdd-option css-4cffwv">
+                            <div class="css-1pysja1">4h</div>
+                          </div>
+                        </li>
+                        <li id="24h" title="24h" class="bnb-active-option bn-sdd-option-item css-1sbm2l4">
+                          <div class="bn-sdd-option css-4cffwv">
+                            <div class="css-1pysja1">24h</div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div> -->
+                  </div>
+
+                  <div class="text-t-third css-lkqrqt">
+                    <div class="whitespace-nowrap text-t-third">Change</div>
+                    &nbsp;
+                    <i class='bx bxs-sort-alt' ></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="css-yexlrp" style="width: 148px;">
+                <div class="css-4cffwv">
+                  <div class="text-t-third css-lkqrqt">
+                    <div class="whitespace-nowrap text-t-third">24h Volume</div>
+                    &nbsp;
+                    <i class='bx bxs-sort-alt' ></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="css-yexlrp" style="width: 148px;">
+                <div class="css-4cffwv">
+                  <div class="text-t-third css-lkqrqt">
+                    <div class="whitespace-nowrap text-t-third">Market Cap</div>
+                    &nbsp;
+                    <i class='bx bxs-sort-alt' ></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="css-yexlrp" style="width: 148px;">
+                <div class="css-4cffwv">
+                  <div class="text-t-third css-lkqrqt">
+                    <div class="whitespace-nowrap text-t-third">Actions</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="body-list-coins">
+
+              <div direction="ltr" class="css-vlibs4 " *ngFor="let coin of coinData;" >
+                <div class="css-1ydqfmf">
+
+                  <a class="css-1hep5a8" style="width: 340px;">
+                    <div class="tab__column css-hq3o44" style="display: flex; justify-content: space-between;">
+                      <div class="css-1y4fqhd">
+                        <div class="flex items-center justify-center">
+                          <img src="{{coin.img}}" class="rounded-full css-17hofng">
+                        </div>
+                        <div class="css-cn2h2t">
+                          <div class="subtitle3 text-t-primary css-vurnku">{{toUpperCase(coin.symbol)}}</div>
+                          <div class="body3 line-clamp-1 truncate text-t-third css-vurnku">{{coin.name}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+
+                  <div class="body2 items-center css-18yakpx text-right" style="width: 148px;">${{coin.price}}</div>
+                  <div class="subtitle3 css-18jvuxg text-right" style="width: 148px;" [ngStyle]="{'color': getCoinColor(coin.change)}">{{formatChange(coin.change)}}%</div>
+                  <div class="body2 text-t-primary css-18yakpx text-right" style="width: 148px;">${{coin.total_volume}}</div>
+                  <div class="body2 text-t-primary css-18yakpx text-right" style="width: 148px;">${{coin.market_cap}}</div>
+
+                  <div class="flex items-center gap-xl css-4cffwv text-right" style="width: 148px; justify-content: flex-end;">
+
+                    <a class="btn-link2 flex cursor-pointer items-center text-t-primary underline hover:text-primaryHover">
+                      <div class="bn-tooltips-wrap">
+                        <div class="bn-tooltips-ele">
+
+                        </div>
+                        <div class="bn-bubble bn-bubble__gray bn-tooltips" style="transform: translate(-50%, 0px); top: 100%; left: 50%;">
+                          <div class="bn-bubble-arrow" style="transform: translate(-50%, 0px) rotate(45deg); top: 5px; left: 50%;">
+                          </div>
+                          <div class="bn-bubble-content" ><i class='bx bxs-detail'></i></div>
+                        </div>
+                      </div>
+                    </a>
+
+                    <div class="css-10nf7hq ">
+                      <div  class="btn-link2 flex cursor-pointer items-center text-t-primary underline hover:text-primaryHover">
+                        <div class="bn-tooltips-wrap flex items-center">
+                            <div class="bn-bubble-content"><i class='bx bx-candles'></i></div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+        </div>
+
+        </div>
+
+        <br>
+
+        <div class="central-phantrang">
+          <div class="contai-pt">
+
+              <button class="mirror css-bdqg3e" id="previous-page">
+                <i class='bx bx-chevron-left'></i>
+              </button>
+
+              <button id="page-1" class="css-192p1dx">1</button>
+              <button id="page-2" class="css-fyte2i">2</button>
+              <button id="page-3" class="css-fyte2i">3</button>
+              <button id="page--1" class="css-fyte2i">...</button>
+              <button id="page-13" class="css-fyte2i">13</button>
+
+              <button class="mirror css-h4r5me" id="next-page" aria-label="Next page">
+                <i class='bx bx-chevron-right'></i>
+              </button>
+
+          </div>
+        </div>
+
+        <br>
+    </div>
+
+  </div>
+
+</div>
