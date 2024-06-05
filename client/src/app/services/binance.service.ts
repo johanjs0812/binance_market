@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import Binance, { CandleChartInterval } from 'binance-api-node';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, map, switchMap, forkJoin  } from 'rxjs';
 import { WebsocketService } from './websocket.service';
 
 @Injectable({
@@ -77,8 +77,6 @@ export class BinanceService {
     );
   }
 
-
-
   // Phương thức để lấy tất cả các hậu tố từ Binance
   getAllSuffixes(): Promise<Set<string>> {
     return this.client.exchangeInfo()
@@ -94,5 +92,18 @@ export class BinanceService {
       });
   }
 
+  newListing2024(){
+    return [
+      {s: 'NOT', time: '2024-05-16', n: 'notcoin'},
+      {s: 'BB', time: '2024-05-13', n: 'bouncebit'},
+      {s: 'REZ', time: '2024-04-30', n: 'renzo'},
+      {s: 'OMNI', time: '2024-04-17', n: 'omni network'},
+      {s: 'TAO', time: '2024-04-11', n: 'bittensor'},
+      {s: 'SAGA', time: '2024-04-09', n: 'sage'},
+      {s: 'TNSR', time: '2024-04-08', n: 'tensor'},
+      {s: 'W', time: '2024-04-03', n: 'wormhole'},
+      {s: 'ENA', time: '2024-04-02', n: 'ethena'},
+    ]
+  }
 
 }

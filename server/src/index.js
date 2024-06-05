@@ -14,10 +14,10 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 app.get('/cryptocurrency/listings/latest', async (req, res) => {
     try {
-        const url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest';
+        const url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=5000&convert=USD';
         const response = await axios.get(url, {
             headers: {
-                'X-CMC_PRO_API_KEY': '4ac9ebe5-2daa-4c05-aef2-b9aea7755bb2'
+                'X-CMC_PRO_API_KEY': '4ac9ebe5-2daa-4c05-aef2-b9aea7755bb2', 
             }
         });
         res.json(response.data);
@@ -26,16 +26,41 @@ app.get('/cryptocurrency/listings/latest', async (req, res) => {
     }
 });
 
-app.get('/cryptocurrency/info/:id', async (req, res) => {
+app.get('/cryptocurrency/info/:symbol', async (req, res) => {
+  try {
+      const url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?symbol=${req.params.symbol}`;
+      const response = await axios.get(url, {
+          headers: {
+              'Accepts': 'application/json',
+              'X-CMC_PRO_API_KEY': '4ac9ebe5-2daa-4c05-aef2-b9aea7755bb2'
+          }
+      });
+      res.json(response.data);
+  } catch (error) {
+      res.status(500).json({ error: error.toString() });
+  }
+});
+
+const baseUrl = 'https://api.coingecko.com/api/v3';
+
+app.get('/coins/:id', async (req, res) => {
+    console.log('xxxx')
+
     try {
-        const url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?id=${req.params.id}`;
-        const response = await axios.get(url, {
-            headers: {
-                'Accepts': 'application/json',
-                'X-CMC_PRO_API_KEY': '4ac9ebe5-2daa-4c05-aef2-b9aea7755bb2'
-            }
-        });
+        const response = await axios.get(`${baseUrl}/coins/${req.params.id}`);
         res.json(response.data);
+    } catch (error) {
+        res.status(500).json({ error: error.toString() });
+    }
+});
+
+app.get('/coins', async (req, res) => {
+    console.log('cnnss')
+    try {
+        const ids = req.query.ids.split(',');
+        const requests = ids.map(id => axios.get(`${baseUrl}/coins/${id}`));
+        const responses = await Promise.all(requests);
+        res.json(responses.map(response => response.data));
     } catch (error) {
         res.status(500).json({ error: error.toString() });
     }

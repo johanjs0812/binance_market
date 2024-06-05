@@ -28,13 +28,13 @@
 
             <div class="css-4cffwv" *ngFor="let coin of HotCoins;">
               <a class="gap-2xs css-fhz2qa">
-                <img src="{{coin.img}}" style="border-radius: 50%;">
-                <div class="line-clamp-1 truncate css-10dum4v">{{toUpperCase(coin.symbol)}}</div>
+                <img src="{{coin.image}}" style="border-radius: 50%;">
+                <div class="line-clamp-1 truncate css-10dum4v">{{coin.data?.s}}</div>
               </a>
               <div class="css-13k09h2">
-                <div class="css-16hlase" style="direction: ltr;">${{coin.price}}</div>
+                <div class="css-16hlase" style="direction: ltr;">{{formatCurrency(coin.data?.p)}}</div>
               </div>
-              <div class="css-1rgq15x" [ngStyle]="{'color': getCoinColor(coin.change)}">{{formatChange(coin.change)}}%</div>
+              <div class="css-1rgq15x" [ngStyle]="{'color': getCoinColor(coin.data?.P)}">{{ formatChange(coin.data?.P)}}%</div>
             </div>
 
           </div>
@@ -54,13 +54,13 @@
 
             <div class="css-4cffwv" *ngFor="let coin of NewListingCoins;">
               <a class="gap-2xs css-fhz2qa">
-                <img src="{{coin.img}}" style="border-radius: 50%;">
-                <div class="line-clamp-1 truncate css-10dum4v">{{toUpperCase(coin.symbol)}}</div>
+                <img src="{{coin.logo}}" style="border-radius: 50%;">
+                <div class="line-clamp-1 truncate css-10dum4v">{{coin.s}}</div>
               </a>
               <div class="css-13k09h2">
-                <div class="css-16hlase" style="direction: ltr;">${{coin.price}}</div>
+                <div class="css-16hlase" style="direction: ltr;">{{formatCurrency(coin.c)}}</div>
               </div>
-              <div class="css-1rgq15x" [ngStyle]="{'color': getCoinColor(coin.change)}">{{formatChange(coin.change)}}%</div>
+              <div class="css-1rgq15x" [ngStyle]="{'color': getCoinColor(coin.P)}">{{ formatChange(coin.P)}}%</div>
             </div>
 
           </div>
@@ -81,12 +81,12 @@
             <div class="css-4cffwv" *ngFor="let coin of TopGainerCoin;">
               <a class="gap-2xs css-fhz2qa">
                 <img src="{{coin.logo}}" style="border-radius: 50%;">
-                <div class="line-clamp-1 truncate css-10dum4v">{{coin.symbol}}</div>
+                <div class="line-clamp-1 truncate css-10dum4v">{{coin.s}}</div>
               </a>
               <div class="css-13k09h2">
-                <div class="css-16hlase" style="direction: ltr;">$</div>
+                <div class="css-16hlase" style="direction: ltr;">{{formatCurrency(coin.c)}}</div>
               </div>
-              <!-- <div class="css-1rgq15x" [ngStyle]="{'color': getCoinColor(coin.change)}">{{formatChange(coin.change)}}%</div> -->
+              <div class="css-1rgq15x" [ngStyle]="{'color': getCoinColor(coin.P)}">{{ formatChange(coin.P)}}%</div>
             </div>
 
           </div>
@@ -107,12 +107,12 @@
             <div class="css-4cffwv" *ngFor="let coin of TopVolume;">
               <a class="gap-2xs css-fhz2qa">
                 <img src="{{coin.logo}}" style="border-radius: 50%;">
-                <div class="line-clamp-1 truncate css-10dum4v">{{coin.symbol}}</div>
+                <div class="line-clamp-1 truncate css-10dum4v">{{coin.s}}</div>
               </a>
               <div class="css-13k09h2">
-                <div class="css-16hlase" style="direction: ltr;">$</div>
+                <div class="css-16hlase" style="direction: ltr;">{{formatCurrency(coin.c)}}</div>
               </div>
-              <!-- <div class="css-1rgq15x" [ngStyle]="{'color': getCoinColor()}">{{formatChange()}}%</div> -->
+              <div class="css-1rgq15x" [ngStyle]="{'color': getCoinColor(coin.P)}">{{ formatChange(coin.P)}}%</div>
             </div>
 
           </div>
@@ -370,14 +370,14 @@
 
             <div class="body-list-coins">
 
-              <div direction="ltr" class="css-vlibs4 " *ngFor="let coin of coinData;" >
+              <div direction="ltr" class="css-vlibs4 " *ngFor="let coin of marketData;" >
                 <div class="css-1ydqfmf">
 
                   <a class="css-1hep5a8" style="width: 340px;">
                     <div class="tab__column css-hq3o44" style="display: flex; justify-content: space-between;">
                       <div class="css-1y4fqhd">
                         <div class="flex items-center justify-center">
-                          <img src="{{coin.img}}" class="rounded-full css-17hofng">
+                          <img src="{{coin.image}}" class="rounded-full css-17hofng" style="border-radius: 50%;">
                         </div>
                         <div class="css-cn2h2t">
                           <div class="subtitle3 text-t-primary css-vurnku">{{toUpperCase(coin.symbol)}}</div>
@@ -387,8 +387,8 @@
                     </div>
                   </a>
 
-                  <div class="body2 items-center css-18yakpx text-right" style="width: 148px;">${{coin.price}}</div>
-                  <div class="subtitle3 css-18jvuxg text-right" style="width: 148px;" [ngStyle]="{'color': getCoinColor(coin.change)}">{{formatChange(coin.change)}}%</div>
+                  <div class="body2 items-center css-18yakpx text-right" style="width: 148px;">{{coin.data?.c}}</div>
+                  <div class="subtitle3 css-18jvuxg text-right" style="width: 148px;" [ngStyle]="{'color': getCoinColor(coin.data?.P)}">{{ formatChange(coin.data?.P)}}%</div>
                   <div class="body2 text-t-primary css-18yakpx text-right" style="width: 148px;">${{coin.total_volume}}</div>
                   <div class="body2 text-t-primary css-18yakpx text-right" style="width: 148px;">${{coin.market_cap}}</div>
 

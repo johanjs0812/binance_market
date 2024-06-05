@@ -20,15 +20,19 @@ export class MarketOverviewComponent implements OnInit, AfterViewInit {
   marketData: any;
   datasuffixes: any;
 
-  TopVolume: any;
-  TopGainerCoin: any;
-  NewListingCoins: any;
-  HotCoins: any;
+  marketcap: any;
+  TopVolume: any[] = [];
+  TopGainerCoin: any[] = [];
+  NewListingCoins: any[] = [];
+  HotCoins: any[] = [];
 
+  CMCnewListing: any;
   colorXanh: any = "#0ECB81";
   colorDo: any = "#F6465D";
 
   coinData: any[] = [];
+
+  coinInfoCache: any[] = [];
 
   constructor(
     private binanceService: BinanceService,
@@ -37,83 +41,209 @@ export class MarketOverviewComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2)
   { }
 
+  getCoinDataBinance(){
+    return this.binanceService.getMarketOverviewUpdatesUSDT();
+  }
+
   getTopVolumeCoins(data: any[], limit: number): any[] {
-    let filteredData = data.filter(coin => coin.symbol !== 'USDT' && coin.symbol !== 'USDC' && coin.symbol !== 'FDUSD');
-    let sortedData = filteredData.sort((a, b) => b.quote.USD.volume_24h - a.quote.USD.volume_24h);
-    return sortedData.slice(0, limit);
-  }
-
-  getTopGainerCoins(data: any[], limit: number): any[] {
-    let filteredData = data.filter(coin =>
-      coin.symbol !== 'USDT'
-      && coin.symbol!== 'USDC'
-      && coin.symbol!== 'FDUSD'
+    let filteredData = data.filter(item =>
+      item.s !== 'USDT'
+      && item.s !== 'USDC'
+      && item.s !== 'WBTC'
+      && item.s !== 'WBETH'
+      && item.s !== 'YFI'
+      && item.s !== 'FDUSD'
     );
-    let sortedData = filteredData.sort((a, b) => b.quote.USD.percent_change_24h - a.quote.USD.percent_change_24h);
+    let sortedData = filteredData.sort((a, b) => b.q - a.q);
     return sortedData.slice(0, limit);
   }
 
-  getHotCoins(data: any[], limit: number): any[] {
-    let yan = data.sort((a, b) => b.market_cap - a.market_cap);
-    let kan = yan.slice(0, limit);
-    let yen = kan.sort((a, b) => b.change - a.change);
-    return yen.slice(0, limit);
+  NewListingCMC(data: any[], limit: number): any[] {
+    let filteredData = data.filter(item => item.quote.USD.market_cap >= 100000000);
+    let sortedData = filteredData.sort((a, b) => new Date(b.date_added).getTime() - new Date(a.date_added).getTime());
+    return sortedData.slice(0, limit);
+   }
+
+  coinMoiNiemYet: any [] = [];
+  getNewListing(symbols: any[], objects: any[]): any[] {
+    if (!symbols || !Array.isArray(symbols) || !objects || objects.length < 20) {
+      return [];
+    }
+
+    let newData = objects.filter(obj => {
+      return obj.s && symbols.some(symbolObj => symbolObj.symbol === obj.s.toString());
+    }).map(obj => {
+      let symbolObj = symbols.find(symbol => symbol.symbol === obj.s.toString());
+      if (symbolObj) {
+        obj.date_add = symbolObj.date_added;
+      }
+      return obj;
+    });
+
+    if (this.coinMoiNiemYet.length === 0) {
+      this.coinMoiNiemYet = [...newData];
+    }
+
+    newData.forEach(newObj => {
+      let index = this.coinMoiNiemYet.findIndex(item => item.s === newObj.s);
+      if (index !== -1) {
+        this.coinMoiNiemYet[index] = { ...newObj, logo: this.coinMoiNiemYet[index].logo, date_add: this.coinMoiNiemYet[index].date_add };
+      } else {
+        this.coinMoiNiemYet.push(newObj);
+      }
+    });
+
+    this.coinMoiNiemYet.sort((a, b) => new Date(b.date_add).getTime() - new Date(a.date_add).getTime());
+    return this.coinMoiNiemYet;
   }
 
-  NewListing(data: any[], limit: number): any[] {
-    return data.slice( limit);
+  market_resutls:any[]= [];
+  mergeArrays(array1: any, array2: any) {
+    array1.forEach((item1:any) => {
+        array2.forEach((item2:any) => {
+            if (item1.symbol.toUpperCase() === item2.s) {
+                item1.data = item2;
+                this.market_resutls.push(item1);
+            }
+        });
+    });
+    return this.market_resutls;
   }
 
-  sortMarketCap(data: any[], limit: number): any[] {
-    let yan = data.sort((a, b) => b.market_cap - a.market_cap);
-    return yan.slice(0, limit);
+  // Hàm cập nhật thông tin logo từ cache
+  updateLogoFromCache(coins: any[]) {
+    return coins.map((coin:any) => {
+      const symbol = coin.symbol || coin.s; // Sử dụng 's' nếu 'symbol' không tồn tại
+      const info = this.coinInfoCache.find(c => c.symbol === symbol);
+      if (info) {
+        coin.logo = info.logo;
+      }
+      return coin;
+    });
   }
 
-  ngOnInit(): void{
+  updateLogo(coins: any[]) {
+    let symbols = coins.map((coin:any) => coin.symbol || coin.s);
 
-    // this.coinMarketCapService.getListings().subscribe(x => {
-    //   // this.TopVolume = this.getTopVolumeCoins(x.data, this.limit);
-    //   this.TopGainerCoin = this.getTopGainerCoins(x.data, this.limit);
-    //   console.log('yang', this.TopGainerCoin)
-    //   // let ids = this.TopVolume.map((obj:any) => obj.id).join(',');
+    let newSymbols = symbols.filter((symbol:any) => !this.coinInfoCache.some(coin => coin.symbol === symbol));
 
-    //   // this.coinMarketCapService.getInfo(ids).subscribe(v => {
-    //   //   this.TopVolume = this.TopVolume.map((coin:any) => {
-    //   //     const info = v.data[coin.id];
-    //   //     if (info) {
-    //   //       coin.logo = info.logo;
-    //   //     }
-    //   //     return coin;
-    //   //   });
-    //   // });
-    // })
+    if (newSymbols.length > 0) {
+      let symbolString = newSymbols.length > 1 ? newSymbols.join(',') : newSymbols[0];
 
-    this.binanceService.getMarketOverviewUpdatesUSDT().subscribe(x => {
+      this.coinMarketCapService.getInfo(symbolString).subscribe(v => {
+        for (let symbol of newSymbols) {
+          if (v.data[symbol]) {
+            this.coinInfoCache.push({symbol: symbol, logo: v.data[symbol].logo});
+          }
+        }
+        this.updateLogoFromCache(coins);
+      });
 
-      let sortedData = x.sort((a:any, b:any) => b.q - a.q);
-      console.log('55', sortedData);
-
-    })
-  }
-
-  ngAfterViewInit() {
-  }
-
-  getCoinColor(value: string): string {
-    let numberValue = parseFloat(value);
-    if (isNaN(numberValue)) {
-        return 'white';
     } else {
-        return numberValue >= 0 ? this.colorXanh : this.colorDo;
+      this.updateLogoFromCache(coins);
     }
   }
 
-  formatChange(value: number): string {
-    return value.toFixed(2);
+  ngOnInit(): void {
+    this.coinMarketCapService.getListings().subscribe(x => {
+      // console.log('hoa', x.data)
+      this.CMCnewListing = this.NewListingCMC(x.data, 20);
+   });
+
+   this.coinGeckoService.getCoinData().subscribe(jp => {
+      console.log('market_cap', jp)
+      this.marketcap = jp;
+   })
+  }
+
+  ngAfterViewInit() {
+
+    this.getCoinDataBinance().subscribe(data => {
+      // console.log('kyun', data)
+      if (Array.isArray(data)) {
+
+        this.marketData = this.mergeArrays(this.marketcap, data);
+        this.marketData = this.marketData.slice(0, 30);
+
+        this.TopVolume = this.getTopVolumeCoins(data, this.limit);
+        this.updateLogo(this.TopVolume);
+
+        this.TopGainerCoin = data.sort((a:any, b:any) => b.P - a.P).slice(0, this.limit);
+        this.updateLogo(this.TopGainerCoin);
+
+        const resListing = this.getNewListing(this.CMCnewListing, data);
+        if (resListing.length >= 3) {
+          this.NewListingCoins = resListing.slice(0, this.limit);
+          this.updateLogo(this.NewListingCoins);
+        }
+
+        this.HotCoins = this.marketData.slice(0, 3);
+
+      } else {
+        console.error('Data is not an array:', data);
+      }
+    });
+
+  }
+
+  getCoinColor(value: any): string {
+    if (typeof value === 'number') {
+        return value >= 0 ? this.colorXanh : this.colorDo;
+    } else {
+        let numberValue = parseFloat(value);
+        if (isNaN(numberValue)) {
+            return 'white';
+        } else {
+            return numberValue >= 0 ? this.colorXanh : this.colorDo;
+        }
+    }
+  }
+
+  formatChange(value: any) {
+    if (typeof value === 'number') {
+      return value.toFixed(2);
+    } else {
+      return Number(value).toFixed(2);
+    }
   }
 
   toUpperCase(str: string): string {
     return str.toUpperCase();
+  }
+
+  formatCurrency(value: any) {
+    if (value == undefined && value == null) {
+      return;
+    }
+    let numValue = parseFloat(value);
+    if (isNaN(numValue)) {
+      console.error('Value is not a number:', value);
+      return value;
+    }
+    if (numValue >= 1000) {
+      return `$${(numValue / 1000).toFixed(2)}K`;
+    } else if (numValue >= 0.01) {
+      return `$${numValue}`;
+    } else {
+      return `$${numValue}`;
+    }
+  }
+
+  formatCurrencyCMC(value: any) {
+    let numValue = value;
+
+    if (numValue === null) {
+      console.error('Value is null');
+      return value;
+    }
+
+    if (numValue >= 1000) {
+      return `$${(numValue / 1000).toFixed(2)}K`;
+    } else if (numValue >= 0.01) {
+      return `$${numValue.toFixed(2)}`;
+    } else {
+      return `$${numValue.toFixed(6)}`;
+    }
   }
 
 }
